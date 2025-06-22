@@ -530,46 +530,10 @@ textarea:focus {
     .setting-control input[type="number"] {
         width: 50px;
     }
-    .word-red-circle {
-    border: 2px solid red;
-    border-radius: 8px;
-    padding: 2px 4px;
-    margin: 0 1px;
-    background: rgba(255,0,0,0.07);
-    transition: border 0.2s;
-}
 }
     </style>
 </head>
 <body>
-    <script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Applique sur tous les contenus de bloc (class="block-content")
-    function wrapWordsInBlocks() {
-        document.querySelectorAll('.block-content').forEach(function(el) {
-            // Empêche double wrap
-            if (el.dataset.wordsWrapped) return;
-            el.dataset.wordsWrapped = "true";
-            let html = el.innerHTML.replace(/([^\s<>]+)/g, '<span class="clickable-word">$1</span>');
-            el.innerHTML = html;
-        });
-    }
-    // Au début et à chaque mise à jour affichage blocs
-    wrapWordsInBlocks();
-    // Sur mutation des blocs (ex: après displayBlocks)
-    const container = document.getElementById('blocksContainer');
-    if (container) {
-        const observer = new MutationObserver(() => wrapWordsInBlocks());
-        observer.observe(container, { childList: true, subtree: true });
-    }
-    // Gère le clic sur mot
-    document.body.addEventListener('click', function(e) {
-        if (e.target.classList.contains('clickable-word')) {
-            e.target.classList.toggle('word-red-circle');
-        }
-    });
-});
-</script>
     <div class="container">
         <button class="menu-toggle" onclick="toggleSettingsMenu()">⚙️</button>
         
